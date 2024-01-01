@@ -98,3 +98,4 @@ def national_colleges():
     submit()
     time.sleep(3)
     exp_data()
+national_colleges()
