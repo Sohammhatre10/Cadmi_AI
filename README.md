@@ -24,6 +24,10 @@ To clone this repository, follow these steps:
    ```
 
 7. **Install any required dependencies** (if applicable). Check for a `requirements.txt` file or any documentation that specifies the dependencies.
+   Later enter this command in the bash/terminal
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ## About
 
