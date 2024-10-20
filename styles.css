@@ -1,0 +1,27 @@
+*{
+        margin: 0px;
+        padding: 0px;
+}
+.header{
+        display: flex;
+        justify-content: space-around;
+        align-items: center; 
+        /* margin: 2rem; 
+        padding: 0.2rem; */
+        /* margin-left: 12rem; */
+        
+}
+#header{
+        background-color: #3C84AB;
+        height: 4rem;
+        width: 100%;
+}
+.content{
+        border-color: red;
+        border:1px solid rgba(0, 0, 0,.125);
+        border-radius: .25rem;
+        width:80%;
+        margin-left: 6rem;
+        max-height:50rem;
+        
+}
