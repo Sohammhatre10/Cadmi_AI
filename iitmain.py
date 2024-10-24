@@ -15,10 +15,10 @@ def Round():
         div_xpath = '//*[@id="ctl00_ContentPlaceHolder1_ddlroundno_chosen"]'
         chosen_div = driver.find_element(By.XPATH, div_xpath)
         chosen_div.click()
-        input_field = WebDriverWait(driver, 10).until(
+        input_field = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, '//div[@class="chosen-drop"]//input'))
         )
-        input_field.send_keys("6")
+        input_field.send_keys("5")
         time.sleep(5)
         input_field.send_keys(Keys.ENTER)
         print("Round Completed")
@@ -26,7 +26,7 @@ def Round():
         return e
 def institute_type():
     try:
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 5)
         dropdown = wait.until(
             EC.element_to_be_clickable((By.XPATH, '//div[@id="ctl00_ContentPlaceHolder1_ddlInstype_chosen"]')))
         dropdown.click()
@@ -40,7 +40,7 @@ def institute_type():
         return e
 def institute_name():
     try:
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 5)
         dropdown = wait.until(
             EC.element_to_be_clickable((By.XPATH, '//div[@id="ctl00_ContentPlaceHolder1_ddlInstitute_chosen"]')))
         dropdown.click()
@@ -55,7 +55,7 @@ def institute_name():
         return e
 def academic_program():
     try:
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 5)
         dropdown = wait.until(
             EC.element_to_be_clickable((By.XPATH, '//div[@id="ctl00_ContentPlaceHolder1_ddlBranch_chosen"]')))
         dropdown.click()
@@ -70,7 +70,7 @@ def academic_program():
         return e
 def seat_type():
     try:
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 5)
         dropdown = wait.until(
             EC.element_to_be_clickable((By.XPATH, '//div[@id="ctl00_ContentPlaceHolder1_ddlSeattype_chosen"]')))
         dropdown.click()
