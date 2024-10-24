@@ -6,11 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import csv
-
 options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(options=options)
 driver.get("https://admissions.nic.in/csabspl/Applicant/seatallotmentresult/currentorcr.aspx")
-
 def Round():
     try:
         div_xpath = '//*[@id="ctl00_ContentPlaceHolder1_ddlroundno_chosen"]'
@@ -19,13 +17,12 @@ def Round():
         input_field = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//div[@class="chosen-drop"]//input'))
         )
-        input_field.send_keys("2")  # Update to the latest round number for 2024 (e.g., Round 2)
+        input_field.send_keys("2")
         time.sleep(5)
         input_field.send_keys(Keys.ENTER)
         print("Round Completed")
     except Exception as e:
-        print(f"Error in Round selection: {e}")
-
+        return e
 def institute_type():
     try:
         wait = WebDriverWait(driver, 10)
@@ -39,8 +36,7 @@ def institute_type():
         input_element.send_keys(Keys.ENTER)
         print("Institute type Completed")
     except Exception as e:
-        print(f"Error in Institute type: {e}")
-
+        return e
 def institute_name():
     try:
         wait = WebDriverWait(driver, 10)
@@ -55,8 +51,7 @@ def institute_name():
         time.sleep(5)
         print("Institute Name Completed")
     except Exception as e:
-        print(f"Error in Institute name: {e}")
-
+        return e
 def academic_program():
     try:
         wait = WebDriverWait(driver, 10)
@@ -71,22 +66,20 @@ def academic_program():
         time.sleep(5)
         print("Academic Program Completed")
     except Exception as e:
-        print(f"Error in Academic Program: {e}")
-
+        return e
 def submit():
     try:
         submit_button = driver.find_element(By.ID, "ctl00_ContentPlaceHolder1_btnSubmit")
         submit_button.click()
         time.sleep(2)
-        print("Submit Completed")
+        print("Submit")
     except Exception as e:
-        print(f"Error in Submit: {e}")
-
+        return e
 def exp_data():
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, 'html.parser')
     rows = soup.find_all('tr')
-    with open('csab_2024.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open('output.csv', 'w', newline='', encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
         headers = ["College", "Branch", "Quota", "Category", "Gender", "OpenRank", "CloseRank"]
         csv_writer.writerow(headers)
@@ -97,7 +90,6 @@ def exp_data():
                 text = column.get_text(strip=True)
                 row_data.append(text)
             csv_writer.writerow(row_data)
-
 def national_colleges():
     Round()
     institute_type()
@@ -106,5 +98,4 @@ def national_colleges():
     submit()
     time.sleep(3)
     exp_data()
-
 national_colleges()
