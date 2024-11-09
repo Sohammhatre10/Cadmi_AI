@@ -81,7 +81,7 @@ def exp_data():
     rows = soup.find_all('tr')
     with open('csab.csv', 'w', newline='', encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
-        headers = ["College-name", "Program", "Quota", "Category", "Gender", "OpenRank", "CloseRank"]
+        headers = ["College-name", "Program", "Quota", "Category", "Gender", "OpenRank", "Cutoff"] #close rank = cutoff
         csv_writer.writerow(headers)
         for row in rows:
             columns = row.find_all('td')

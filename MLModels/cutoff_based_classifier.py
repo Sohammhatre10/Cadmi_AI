@@ -25,7 +25,7 @@ def classify_data_with_visualization(df):
         df[column] = le.fit_transform(df[column])
         label_encoders[column] = le
 
-    X = df[["College-name", "Program", "Category", "Gender"]] #features (X) College,Branch,Quota,Category,Gender,OpenRank,CloseRank
+    X = df[["College-name", "Program", "Category", "Gender"]] #features (X) 
 
     y = df["Cutoff_Category"] #target label (y)
 
@@ -65,14 +65,14 @@ def classify_data_with_visualization(df):
 def main():
     df1 = pd.read_csv("du_cutoff_2024_first.csv")  
     df2 = pd.read_csv("du_cutoff_2024_second.csv")
-    #df3 = pd.read_csv("csab.csv")
-    #df4 = pd.read_csv("iitmain.csv")
+    df3 = pd.read_csv("csab.csv")
+    df4 = pd.read_csv("iitmain.csv")
     if not df1.empty:
         print("Data loaded successfully!")
         classify_data_with_visualization(df1)  #du cutoff 1
         classify_data_with_visualization(df2)  #du cutoff 2
-        #classify_data_with_visualization(df3)
-        #classify_data_with_visualization(df4)
+        classify_data_with_visualization(df3)  #csab cutoff
+        classify_data_with_visualization(df4)  #iitmain cutoff
 
 if __name__ == "__main__":
     main()
