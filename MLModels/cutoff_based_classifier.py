@@ -7,16 +7,15 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Classification code with visualization
 def classify_data_with_visualization(df):
-    # Convert Cutoff to a numeric type if necessary
+    # Converting Cutoff to a numeric type 
     df["Cutoff"] = pd.to_numeric(df["Cutoff"], errors="coerce")
 
     # Bin the 'Cutoff' values into categories: Low, Medium, High
     cutoff_labels = ["Low", "Medium", "High"]
     df["Cutoff_Category"] = pd.qcut(df["Cutoff"], q=3, labels=cutoff_labels)
 
-    # Drop rows with missing values in Cutoff_Category
+    # Dropping rows with missing values in Cutoff_Category
     df = df.dropna(subset=["Cutoff_Category"])
 
     # Encode categorical columns
@@ -26,9 +25,9 @@ def classify_data_with_visualization(df):
         df[column] = le.fit_transform(df[column])
         label_encoders[column] = le
 
-    # Define features (X) and target labels (y)
-    X = df[["College-name", "Program", "Category", "Gender"]]
-    y = df["Cutoff_Category"]
+    X = df[["College-name", "Program", "Category", "Gender"]] #features (X) College,Branch,Quota,Category,Gender,OpenRank,CloseRank
+
+    y = df["Cutoff_Category"] #target label (y)
 
     # Split the data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=64)
@@ -66,10 +65,14 @@ def classify_data_with_visualization(df):
 def main():
     df1 = pd.read_csv("du_cutoff_2024_first.csv")  
     df2 = pd.read_csv("du_cutoff_2024_second.csv")
+    #df3 = pd.read_csv("csab.csv")
+    #df4 = pd.read_csv("iitmain.csv")
     if not df1.empty:
         print("Data loaded successfully!")
         classify_data_with_visualization(df1)  #du cutoff 1
         classify_data_with_visualization(df2)  #du cutoff 2
+        #classify_data_with_visualization(df3)
+        #classify_data_with_visualization(df4)
 
 if __name__ == "__main__":
     main()
